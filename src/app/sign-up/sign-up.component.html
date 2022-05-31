@@ -1,0 +1,84 @@
+<form class="p-2" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+  <div class="mt-2">
+    <label class="form-label" for="fname">First Name</label>
+    <input
+      class="form-control"
+      type="text"
+      id="fname"
+      formControlName="fname"
+    />
+    <div class="alert alert-danger" *ngIf="fname?.touched && fname?.invalid">
+      <div *ngIf="fname?.errors?.['required']">First name is required.</div>
+      <div *ngIf="fname?.errors?.['minlength']">
+        First name should be min 3 chars.
+      </div>
+    </div>
+  </div>
+  <div class="mt-2">
+    <label class="form-label" for="lname">Last Name</label>
+    <input
+      class="form-control"
+      type="text"
+      id="lname"
+      formControlName="lname"
+    />
+    <div class="alert alert-danger" *ngIf="lname?.touched && lname?.invalid">
+      <div *ngIf="lname?.errors?.['required']">Last name is required.</div>
+      <div *ngIf="lname?.errors?.['minlength']">
+        Last name should be min 3 chars.
+      </div>
+    </div>
+  </div>
+  <div class="mt-2">
+    <label class="form-label" for="email">Email</label>
+    <input
+      class="form-control"
+      type="email"
+      id="email"
+      formControlName="email"
+    />
+    <div class="alert alert-danger" *ngIf="email?.touched && email?.invalid">
+      <div *ngIf="email?.errors?.['required']">Email is required.</div>
+      <div *ngIf="email?.errors?.['email']">Invalid email.</div>
+    </div>
+  </div>
+  <div class="mt-2">
+    <label class="form-label" for="password">Password</label>
+    <input
+      class="form-control"
+      type="password"
+      id="password"
+      formControlName="password"
+    />
+    <div
+      class="alert alert-danger"
+      *ngIf="password?.touched && password?.invalid"
+    >
+      <div *ngIf="password?.errors?.['required']">Password is required.</div>
+    </div>
+  </div>
+  <div class="mt-2">
+    <label class="form-label" for="confirmPassword">Confirm Password</label>
+    <input
+      class="form-control"
+      type="password"
+      id="confirmPassword"
+      formControlName="confirmPassword"
+    />
+    <div
+      class="alert alert-danger"
+      *ngIf="confirmPassword?.touched && confirmPassword?.invalid"
+    >
+      <div *ngIf="confirmPassword?.errors?.['required']">
+        Confirm your password.
+      </div>
+    </div>
+    <div
+      class="alert alert-danger"
+      *ngIf="signUpForm?.touched && signUpForm?.invalid && signUpForm?.errors?.['password']"
+    >
+      Passwords do not match.
+    </div>
+  </div>
+  <button class="mt-2 btn btn-primary">Sign Up</button>
+</form>
