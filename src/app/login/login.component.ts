@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LoginDto } from '../interfaces/login-dto';
+import { UserIdService } from '../service/user-id.service';
 import { UserService } from '../service/user.service';
 
 @Component({
@@ -13,7 +14,11 @@ import { UserService } from '../service/user.service';
 export class LoginComponent implements OnDestroy {
   private observableSubs: Subscription[] = [];
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(
+    private userService: UserService,
+    private userIdService: UserIdService,
+    private router: Router
+  ) {}
 
   ngOnDestroy(): void {
     this.observableSubs.forEach((sub) => {
@@ -41,9 +46,10 @@ export class LoginComponent implements OnDestroy {
         password: this.password?.value,
       };
 
-      const loginOb = this.userService
-        .login(data)
-        .subscribe(() => this.router.navigateByUrl('/dashboard'));
+      const loginOb = this.userService.login(data).subscribe((res) => {
+        this.userIdService.setUserId(res.id);
+        this.router.navigateByUrl('/dashboard');
+      });
 
       this.observableSubs.push(loginOb);
     }

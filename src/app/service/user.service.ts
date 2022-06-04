@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { UserAvailibilityDto } from '../interfaces/user-availability-dto';
 import { SignUpDto } from '../interfaces/sign-up-dto';
 import { LoginDto } from '../interfaces/login-dto';
+import { UserDto } from '../interfaces/user-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -19,10 +20,10 @@ export class UserService {
   }
 
   signUp(data: SignUpDto) {
-    return this.http.post<SignUpDto>(this.baseUrl, data);
+    return this.http.post(this.baseUrl, data);
   }
 
   login(data: LoginDto) {
-    return this.http.post<LoginDto>(`${this.baseUrl}/login`, data);
+    return this.http.post<UserDto>(`${this.baseUrl}/login`, data);
   }
 }
