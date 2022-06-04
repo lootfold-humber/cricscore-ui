@@ -10,7 +10,10 @@ import { SignUpFormValidator } from './signupform.validator';
   styleUrls: ['./sign-up.component.css'],
 })
 export class SignUpComponent implements OnInit {
-  constructor(private userEmailValidator: UserEmailValidator) {}
+  constructor(
+    private userEmailValidator: UserEmailValidator,
+    private userService: UserService
+  ) {}
 
   signUpForm = new FormGroup(
     {
@@ -58,7 +61,14 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('submit');
-    console.log(this.signUpForm);
+    if (this.signUpForm.valid) {
+      const data = {
+        first: this.fname?.value,
+        last: this.lname?.value,
+        email: this.email?.value,
+        password: this.password?.value,
+      };
+      this.userService.signUp(data).subscribe((res) => console.log(res));
+    }
   }
 }
