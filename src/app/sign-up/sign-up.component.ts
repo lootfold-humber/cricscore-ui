@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UserService } from '../service/user.service';
+import { UserEmailValidator } from './email.validator';
 import { SignUpFormValidator } from './signupform.validator';
 
 @Component({
@@ -8,6 +10,8 @@ import { SignUpFormValidator } from './signupform.validator';
   styleUrls: ['./sign-up.component.css'],
 })
 export class SignUpComponent implements OnInit {
+  constructor(private userEmailValidator: UserEmailValidator) {}
+
   signUpForm = new FormGroup(
     {
       fname: new FormControl('', [
@@ -18,7 +22,13 @@ export class SignUpComponent implements OnInit {
         Validators.required,
         Validators.minLength(3),
       ]),
-      email: new FormControl('', [Validators.required, Validators.email]),
+      email: new FormControl('', {
+        validators: [Validators.required, Validators.email],
+        asyncValidators: [
+          this.userEmailValidator.validate.bind(this.userEmailValidator),
+        ],
+        updateOn: 'blur',
+      }),
       password: new FormControl('', [Validators.required]),
       confirmPassword: new FormControl('', [Validators.required]),
     },
