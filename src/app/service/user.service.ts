@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { UserAvailibilityDto } from '../interfaces/UserAvailibilityDto';
-import { SignUpDto } from '../interfaces/SignUpDto';
+import { UserAvailibilityDto } from '../interfaces/user-availability-dto';
+import { SignUpDto } from '../interfaces/sign-up-dto';
 import { LoginDto } from '../interfaces/login-dto';
 
 @Injectable({

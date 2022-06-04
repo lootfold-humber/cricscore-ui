@@ -2,6 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { SignUpDto } from '../interfaces/sign-up-dto';
 import { UserService } from '../service/user.service';
 import { UserEmailValidator } from './email.validator';
 import { SignUpFormValidator } from './signupform.validator';
@@ -65,7 +66,7 @@ export class SignUpComponent implements OnDestroy {
 
   onSubmit() {
     if (this.signUpForm.valid) {
-      const data = {
+      const data: SignUpDto = {
         first: this.fname?.value,
         last: this.lname?.value,
         email: this.email?.value,
