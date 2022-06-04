@@ -1,1 +1,32 @@
-<p>login works!</p>
+<form class="p-2" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div class="mt-2">
+    <label class="form-label" for="email">Email</label>
+    <input
+      class="form-control"
+      type="email"
+      id="email"
+      formControlName="email"
+    />
+    <div class="alert alert-danger" *ngIf="email?.touched && email?.invalid">
+      <div *ngIf="email?.errors?.['required']">Email is required.</div>
+      <div *ngIf="email?.errors?.['email']">Invalid email.</div>
+    </div>
+  </div>
+  <div class="mt-2">
+    <label class="form-label" for="password">Password</label>
+    <input
+      class="form-control"
+      type="password"
+      id="password"
+      formControlName="password"
+    />
+    <div
+      class="alert alert-danger"
+      *ngIf="password?.touched && password?.invalid"
+    >
+      <div *ngIf="password?.errors?.['required']">Password is required.</div>
+    </div>
+  </div>
+  <button class="mt-2 btn btn-primary" type="submit">Login</button>
+  <button class="mt-2 ms-2 btn" type="menu" routerLink="signup">Sign Up</button>
+</form>
