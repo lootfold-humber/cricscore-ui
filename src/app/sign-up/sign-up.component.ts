@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { UserService } from '../service/user.service';
 import { UserEmailValidator } from './email.validator';
 import { SignUpFormValidator } from './signupform.validator';
@@ -9,13 +11,16 @@ import { SignUpFormValidator } from './signupform.validator';
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.css'],
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent implements OnDestroy {
+  private observableSubs: Subscription[] = [];
+
   constructor(
     private userEmailValidator: UserEmailValidator,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {}
 
-  signUpForm = new FormGroup(
+  public signUpForm = new FormGroup(
     {
       fname: new FormControl('', [
         Validators.required,
@@ -37,8 +42,6 @@ export class SignUpComponent implements OnInit {
     },
     SignUpFormValidator.validatePassword
   );
-
-  ngOnInit(): void {}
 
   get fname() {
     return this.signUpForm.get('fname');
@@ -68,7 +71,18 @@ export class SignUpComponent implements OnInit {
         email: this.email?.value,
         password: this.password?.value,
       };
-      this.userService.signUp(data).subscribe((res) => console.log(res));
+
+      const signUpOb = this.userService
+        .signUp(data)
+        .subscribe(() => this.router.navigateByUrl('/'));
+
+      this.observableSubs.push(signUpOb);
     }
+  }
+
+  ngOnDestroy(): void {
+    this.observableSubs.forEach((sub) => {
+      sub.unsubscribe();
+    });
   }
 }
