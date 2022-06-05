@@ -9,8 +9,10 @@
   </thead>
   <tbody>
     <tr *ngFor="let team of teams">
-      <th scope="row">{{ team.name }}</th>
-      <td>Edit | Delete</td>
+      <td scope="row">{{ team.name }}</td>
+      <td>
+        <button (click)="onDelete(team.id)" class="btn">Delete</button>
+      </td>
     </tr>
   </tbody>
 </table>

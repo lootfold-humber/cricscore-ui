@@ -22,4 +22,10 @@ export class TeamService {
       headers: { userId: `${userId}` },
     });
   }
+
+  deleteTeam(teamId: number, userId: number) {
+    return this.http.delete(`${this.baseUrl}/${teamId}`, {
+      headers: { userId: `${userId}` },
+    });
+  }
 }

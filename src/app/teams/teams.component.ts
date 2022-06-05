@@ -22,6 +22,11 @@ export class TeamsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.getUserId();
+    this.getTeams();
+  }
+
+  private getUserId() {
     const userOb = this.userIdService.getUserId().subscribe((id) => {
       if (id == 0) {
         this.router.navigateByUrl('/');
@@ -31,7 +36,9 @@ export class TeamsComponent implements OnInit {
     });
 
     this.observableSubs.push(userOb);
+  }
 
+  getTeams() {
     const getTeamsOb = this.teamService
       .getTeams(this.userId)
       .subscribe((teams) => (this.teams = teams));
@@ -43,5 +50,15 @@ export class TeamsComponent implements OnInit {
     this.observableSubs.forEach((sub) => {
       sub.unsubscribe();
     });
+  }
+
+  onDelete(teamId: number) {
+    const deleteOb = this.teamService
+      .deleteTeam(teamId, this.userId)
+      .subscribe(() => {
+        this.getTeams();
+      });
+
+    this.observableSubs.push(deleteOb);
   }
 }
