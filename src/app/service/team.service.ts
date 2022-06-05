@@ -16,4 +16,10 @@ export class TeamService {
       headers: { userId: `${userId}` },
     });
   }
+
+  getTeams(userId: number) {
+    return this.http.get<TeamDto[]>(this.baseUrl, {
+      headers: { userId: `${userId}` },
+    });
+  }
 }
