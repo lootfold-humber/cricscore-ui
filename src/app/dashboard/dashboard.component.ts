@@ -14,6 +14,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(private userIdService: UserIdService, private router: Router) {}
 
   ngOnInit(): void {
+    this.getUserId();
+  }
+
+  ngOnDestroy(): void {
+    this.observableSubs.forEach((sub) => {
+      sub.unsubscribe();
+    });
+  }
+
+  private getUserId() {
     const userOb = this.userIdService.getUserId().subscribe((id) => {
       if (id == 0) {
         this.router.navigateByUrl('/');
@@ -21,11 +31,5 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
 
     this.observableSubs.push(userOb);
-  }
-
-  ngOnDestroy(): void {
-    this.observableSubs.forEach((sub) => {
-      sub.unsubscribe();
-    });
   }
 }

@@ -26,20 +26,25 @@ export class AddTeamComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    const userOb = this.userIdService.getUserId().subscribe((id) => {
-      if (id == 0) {
-        this.router.navigateByUrl('/');
-      }
-      this.userId = id;
-    });
-
-    this.observableSubs.push(userOb);
+    this.getUserId();
   }
 
   ngOnDestroy(): void {
     this.observableSubs.forEach((sub) => {
       sub.unsubscribe();
     });
+  }
+
+  private getUserId() {
+    const userOb = this.userIdService.getUserId().subscribe((id) => {
+      if (id == 0) {
+        this.router.navigateByUrl('/');
+      }
+
+      this.userId = id;
+    });
+
+    this.observableSubs.push(userOb);
   }
 
   get name() {
