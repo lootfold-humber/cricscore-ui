@@ -10,6 +10,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TeamsComponent } from './teams/teams.component';
 import { MatchesComponent } from './matches/matches.component';
+import { AddTeamComponent } from './add-team/add-team.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { MatchesComponent } from './matches/matches.component';
     DashboardComponent,
     TeamsComponent,
     MatchesComponent,
+    AddTeamComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +31,7 @@ import { MatchesComponent } from './matches/matches.component';
       { path: 'signup', component: SignUpComponent },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'teams', component: TeamsComponent },
+      { path: 'teams/add', component: AddTeamComponent },
       { path: 'matches', component: MatchesComponent },
     ]),
   ],

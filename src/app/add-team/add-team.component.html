@@ -1,0 +1,13 @@
+<form class="p-2" [formGroup]="addTeamForm" (ngSubmit)="onSubmit()">
+  <div class="mt-2">
+    <label class="form-label" for="name">Team Name</label>
+    <input class="form-control" type="text" id="name" formControlName="name" />
+    <div class="alert alert-danger" *ngIf="name?.touched && name?.invalid">
+      <div *ngIf="name?.errors?.['required']">First name is required.</div>
+      <div *ngIf="name?.errors?.['minlength']">
+        Team ame should be min 3 chars.
+      </div>
+    </div>
+  </div>
+  <button class="mt-2 btn btn-primary">Add</button>
+</form>
