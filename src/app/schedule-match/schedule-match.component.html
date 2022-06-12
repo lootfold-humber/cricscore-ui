@@ -1,0 +1,75 @@
+<form class="p-2" [formGroup]="scheduleMatchForm" (ngSubmit)="onSubmit()">
+  <div class="mt-2">
+    <label class="form-label" for="homeTeam">Home Team</label>
+    <select
+      class="form-select"
+      name="homeTeam"
+      id="homeTeam"
+      formControlName="homeTeam"
+      (change)="onSelectChange()"
+    >
+      <option selected value="0">-- select home team --</option>
+      <option *ngFor="let team of homeTeams" value="{{ team.id }}">
+        {{ team.name }}
+      </option>
+    </select>
+    <div
+      class="alert alert-danger"
+      *ngIf="homeTeam?.touched && homeTeam?.invalid"
+    >
+      <div *ngIf="homeTeam?.errors?.['required'] || homeTeam?.errors?.['min']">
+        Home team is required.
+      </div>
+    </div>
+  </div>
+  <div class="mt-2">
+    <label class="form-label" for="awayTeam">Away Team</label>
+    <select
+      class="form-select"
+      name="awayTeam"
+      id="awayTeam"
+      formControlName="awayTeam"
+      (change)="onSelectChange()"
+    >
+      <option selected value="0">-- select away team --</option>
+      <option *ngFor="let team of awayTeams" value="{{ team.id }}">
+        {{ team.name }}
+      </option>
+    </select>
+    <div
+      class="alert alert-danger"
+      *ngIf="awayTeam?.touched && awayTeam?.invalid"
+    >
+      <div *ngIf="awayTeam?.errors?.['required'] || awayTeam?.errors?.['min']">
+        Away team is required.
+      </div>
+    </div>
+  </div>
+  <div>
+    <label for="date">Date</label>
+    <input
+      class="form-control"
+      type="date"
+      name="date"
+      id="date"
+      formControlName="date"
+    />
+    <div class="alert alert-danger" *ngIf="date?.touched && date?.invalid">
+      <div *ngIf="date?.errors?.['required']">Match date is required.</div>
+    </div>
+  </div>
+  <div>
+    <label for="time">Time</label>
+    <input
+      class="form-control"
+      type="time"
+      name="time"
+      id="time"
+      formControlName="time"
+    />
+    <div class="alert alert-danger" *ngIf="time?.touched && time?.invalid">
+      <div *ngIf="time?.errors?.['required']">Match time is required.</div>
+    </div>
+  </div>
+  <button class="mt-2 btn btn-primary" type="submit">Schedule</button>
+</form>
