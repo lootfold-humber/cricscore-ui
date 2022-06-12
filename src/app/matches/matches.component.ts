@@ -73,4 +73,14 @@ export class MatchesComponent implements OnInit, OnDestroy {
   public getFormattedDate(dateStr: string) {
     return new Date(dateStr).toLocaleString();
   }
+
+  public onDelete(matchId: number) {
+    const deleteOb = this.matchService
+      .deleteMatch(matchId, this.userId)
+      .subscribe(() => {
+        this.getMatches();
+      });
+
+    this.observableSubs.push(deleteOb);
+  }
 }

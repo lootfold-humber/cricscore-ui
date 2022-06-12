@@ -14,7 +14,9 @@
       <td>
         {{ getFormattedDate(m.scheduledDateTime) }}
       </td>
-      <td>Delete</td>
+      <td>
+        <button class="btn" (click)="onDelete(m.id)">Delete</button>
+      </td>
     </tr>
   </tbody>
 </table>

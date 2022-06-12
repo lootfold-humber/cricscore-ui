@@ -20,4 +20,10 @@ export class MatchService {
   getMatches() {
     return this.http.get<MatchDto[]>(this.baseUrl);
   }
+
+  deleteMatch(matchId: number, userId: number) {
+    return this.http.delete(`${this.baseUrl}/${matchId}`, {
+      headers: { userId: `${userId}` },
+    });
+  }
 }
