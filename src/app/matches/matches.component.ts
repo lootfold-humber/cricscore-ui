@@ -83,4 +83,12 @@ export class MatchesComponent implements OnInit, OnDestroy {
 
     this.observableSubs.push(deleteOb);
   }
+
+  public onStart(matchId: number) {
+    this.router.navigateByUrl(`/matches/start/${matchId}`);
+  }
+
+  public onStop(matchId: number) {
+    console.log(`stop: ${matchId}`);
+  }
 }

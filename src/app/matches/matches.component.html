@@ -15,6 +15,8 @@
         {{ getFormattedDate(m.scheduledDateTime) }}
       </td>
       <td>
+        <button class="btn" (click)="onStart(m.id)">Start</button> |
+        <button class="btn" (click)="onStop(m.id)">Stop</button> |
         <button class="btn" (click)="onDelete(m.id)">Delete</button>
       </td>
     </tr>

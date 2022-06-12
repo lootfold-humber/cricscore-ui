@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatchDto } from '../interfaces/match-dto';
 import { ScheduleMatchDto } from '../interfaces/schedule-match-dto';
+import { TossDto } from '../interfaces/toss-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -25,5 +26,15 @@ export class MatchService {
     return this.http.delete(`${this.baseUrl}/${matchId}`, {
       headers: { userId: `${userId}` },
     });
+  }
+
+  startMatch(matchId: number, data: TossDto, userId: number) {
+    return this.http.post(`${this.baseUrl}/${matchId}/start`, data, {
+      headers: { userId: `${userId}` },
+    });
+  }
+
+  getTossForMatch(matchId: number) {
+    return this.http.get<TossDto>(`${this.baseUrl}/${matchId}/toss`);
   }
 }
