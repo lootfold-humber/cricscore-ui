@@ -16,4 +16,8 @@ export class MatchService {
       headers: { userId: `${userId}` },
     });
   }
+
+  getMatches() {
+    return this.http.get<MatchDto[]>(this.baseUrl);
+  }
 }

@@ -1,1 +1,20 @@
 <a routerLink="/matches/schedule">Schedule New Match</a>
+
+<table class="table">
+  <thead>
+    <th>Home Team</th>
+    <th>Away Team</th>
+    <th>DateTime</th>
+    <th>Actions</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let m of matches">
+      <td>{{ m.homeTeamName }}</td>
+      <td>{{ m.awayTeamName }}</td>
+      <td>
+        {{ getFormattedDate(m.scheduledDateTime) }}
+      </td>
+      <td>Delete</td>
+    </tr>
+  </tbody>
+</table>
