@@ -13,6 +13,7 @@ import { MatchesComponent } from './matches/matches.component';
 import { AddTeamComponent } from './add-team/add-team.component';
 import { ScheduleMatchComponent } from './schedule-match/schedule-match.component';
 import { StartMatchComponent } from './start-match/start-match.component';
+import { StopMatchComponent } from './stop-match/stop-match.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { StartMatchComponent } from './start-match/start-match.component';
     AddTeamComponent,
     ScheduleMatchComponent,
     StartMatchComponent,
+    StopMatchComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +41,7 @@ import { StartMatchComponent } from './start-match/start-match.component';
       { path: 'matches', component: MatchesComponent },
       { path: 'matches/schedule', component: ScheduleMatchComponent },
       { path: 'matches/start/:id', component: StartMatchComponent },
+      { path: 'matches/stop/:id', component: StopMatchComponent },
     ]),
   ],
   providers: [],

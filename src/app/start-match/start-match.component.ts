@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { forkJoin, Subscription } from 'rxjs';
 import { MatchDto } from '../interfaces/match-dto';
 import { TeamDto } from '../interfaces/team-dto';

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatchDto } from '../interfaces/match-dto';
 import { ScheduleMatchDto } from '../interfaces/schedule-match-dto';
+import { StopMatchDto } from '../interfaces/stop-match-dto';
 import { TossDto } from '../interfaces/toss-dto';
 
 @Injectable({
@@ -30,6 +31,12 @@ export class MatchService {
 
   startMatch(matchId: number, data: TossDto, userId: number) {
     return this.http.post(`${this.baseUrl}/${matchId}/start`, data, {
+      headers: { userId: `${userId}` },
+    });
+  }
+
+  completeMatch(matchId: number, data: StopMatchDto, userId: number) {
+    return this.http.post(`${this.baseUrl}/${matchId}/complete`, data, {
       headers: { userId: `${userId}` },
     });
   }

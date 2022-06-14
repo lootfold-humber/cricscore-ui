@@ -1,0 +1,33 @@
+<p>
+  Stop Match | {{ match?.homeTeamName }} vs {{ match?.awayTeamName }} |
+  {{ getFormattedDate(match?.scheduledDateTime) }}
+</p>
+
+<form [formGroup]="stopForm" (ngSubmit)="onSubmit()">
+  <div class="mt-2">
+    <label class="form-label" for="winningTeamId">Toss winner</label>
+    <select
+      class="form-select"
+      name="winningTeamId"
+      id="winningTeamId"
+      formControlName="winningTeamId"
+    >
+      <option selected value="0">-- select winning team --</option>
+      <option *ngFor="let team of teams" value="{{ team.id }}">
+        {{ team.name }}
+      </option>
+    </select>
+    <div
+      class="alert alert-danger"
+      *ngIf="winningTeamId?.touched && winningTeamId?.invalid"
+    >
+      <div
+        *ngIf="winningTeamId?.errors?.['required'] || winningTeamId?.errors?.['min']"
+      >
+        Team is required.
+      </div>
+    </div>
+  </div>
+
+  <button class="btn btn-primary" type="submit">Complete</button>
+</form>
