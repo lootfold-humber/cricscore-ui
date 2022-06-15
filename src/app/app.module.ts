@@ -14,6 +14,7 @@ import { AddTeamComponent } from './add-team/add-team.component';
 import { ScheduleMatchComponent } from './schedule-match/schedule-match.component';
 import { StartMatchComponent } from './start-match/start-match.component';
 import { StopMatchComponent } from './stop-match/stop-match.component';
+import { UpdateScoreComponent } from './update-score/update-score.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { StopMatchComponent } from './stop-match/stop-match.component';
     ScheduleMatchComponent,
     StartMatchComponent,
     StopMatchComponent,
+    UpdateScoreComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,8 @@ import { StopMatchComponent } from './stop-match/stop-match.component';
       { path: 'matches', component: MatchesComponent },
       { path: 'matches/schedule', component: ScheduleMatchComponent },
       { path: 'matches/start/:id', component: StartMatchComponent },
-      { path: 'matches/stop/:id', component: StopMatchComponent },
+      { path: 'matches/complete/:id', component: StopMatchComponent },
+      { path: 'matches/score/:id', component: UpdateScoreComponent },
     ]),
   ],
   providers: [],

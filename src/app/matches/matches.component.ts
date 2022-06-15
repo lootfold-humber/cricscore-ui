@@ -89,6 +89,10 @@ export class MatchesComponent implements OnInit, OnDestroy {
   }
 
   public onStop(matchId: number) {
-    this.router.navigateByUrl(`/matches/stop/${matchId}`);
+    this.router.navigateByUrl(`/matches/complete/${matchId}`);
+  }
+
+  public onScore(matchId: number) {
+    this.router.navigateByUrl(`/matches/score/${matchId}`);
   }
 }

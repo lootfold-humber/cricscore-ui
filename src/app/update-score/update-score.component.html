@@ -1,0 +1,118 @@
+<p>{{ match?.homeTeamName }} vs {{ match?.awayTeamName }}</p>
+
+<form [formGroup]="scoreForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="innings" class="control-label">Innings</label>
+    <input
+      type="number"
+      id="innings"
+      class="form-control"
+      formControlName="innings"
+    />
+    <div
+      class="alert alert-danger"
+      *ngIf="innings?.touched && innings?.invalid"
+    >
+      Innings is required. Allowed values 1 & 2.
+    </div>
+  </div>
+
+  <div class="mt-2">
+    <label class="form-label" for="battingTeamId">Batting Team</label>
+    <select
+      class="form-select"
+      name="battingTeamId"
+      id="battingTeamId"
+      formControlName="battingTeamId"
+    >
+      <option selected value="0">-- select batting team --</option>
+      <option *ngFor="let team of teams" value="{{ team.id }}">
+        {{ team.name }}
+      </option>
+    </select>
+    <div
+      class="alert alert-danger"
+      *ngIf="battingTeamId?.touched && battingTeamId?.invalid"
+    >
+      <div
+        *ngIf="battingTeamId?.errors?.['required'] || battingTeamId?.errors?.['min']"
+      >
+        Batting team is required.
+      </div>
+    </div>
+  </div>
+
+  <!-- runs -->
+  <div class="form-group">
+    <label for="runs" class="control-label">Runs</label>
+    <input
+      type="number"
+      id="runs"
+      class="form-control"
+      formControlName="runs"
+    />
+    <div class="alert alert-danger" *ngIf="runs?.touched && runs?.invalid">
+      Runs is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="wickets" class="control-label">Wickets</label>
+    <input
+      type="number"
+      id="wickets"
+      class="form-control"
+      formControlName="wickets"
+    />
+    <div
+      class="alert alert-danger"
+      *ngIf="wickets?.touched && wickets?.invalid"
+    >
+      Wickets is required. Allowed range between 1 to 10.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="overs" class="control-label">Overs</label>
+    <input
+      type="number"
+      id="overs"
+      class="form-control"
+      formControlName="overs"
+    />
+    <div class="alert alert-danger" *ngIf="overs?.touched && overs?.invalid">
+      Overs is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="balls" class="control-label">Balls</label>
+    <input
+      type="number"
+      id="balls"
+      class="form-control"
+      formControlName="balls"
+    />
+    <div class="alert alert-danger" *ngIf="balls?.touched && balls?.invalid">
+      Balls is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="maxOvers" class="control-label">Max overs</label>
+    <input
+      type="number"
+      id="maxOvers"
+      class="form-control"
+      formControlName="maxOvers"
+    />
+    <div
+      class="alert alert-danger"
+      *ngIf="maxOvers?.touched && maxOvers?.invalid"
+    >
+      Max overs is required.
+    </div>
+  </div>
+
+  <button class="btn btn-primary" type="submit">Update</button>
+</form>
