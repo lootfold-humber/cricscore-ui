@@ -32,7 +32,7 @@ export class NavComponent implements OnInit {
     this.observableSubs.push(userOb);
   }
 
-  get displayLogout() {
+  get loggedIn() {
     return this.userId == 0 ? false : true;
   }
 
