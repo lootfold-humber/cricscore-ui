@@ -19,8 +19,23 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/matches">My Matches</a>
+        <li *ngIf="loggedIn" class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            role="button"
+            data-bs-toggle="dropdown"
+            >My Matches</a
+          >
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" routerLink="/matches">List</a>
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/matches/schedule"
+                >Schedule</a
+              >
+            </li>
+          </ul>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/allmatches">All Matches</a>

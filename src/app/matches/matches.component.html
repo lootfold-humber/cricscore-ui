@@ -1,11 +1,11 @@
-<a routerLink="/matches/schedule">Schedule New Match</a>
-
 <table class="table">
   <thead>
-    <th>Home Team</th>
-    <th>Away Team</th>
-    <th>DateTime</th>
-    <th>Actions</th>
+    <tr>
+      <th>Home Team</th>
+      <th>Away Team</th>
+      <th>DateTime</th>
+      <th>Actions</th>
+    </tr>
   </thead>
   <tbody>
     <tr *ngFor="let m of matches">
@@ -15,10 +15,16 @@
         {{ getFormattedDate(m.scheduledDateTime) }}
       </td>
       <td>
-        <button class="btn" (click)="onStart(m.id)">Start</button> |
-        <button class="btn" (click)="onStop(m.id)">Complete</button> |
-        <button class="btn" (click)="onScore(m.id)">Score</button> |
-        <button class="btn" (click)="onDelete(m.id)">Delete</button>
+        <button class="btn btn-light" (click)="onStart(m.id)">Start</button>
+        <button class="ms-2 btn btn-light" (click)="onStop(m.id)">
+          Complete
+        </button>
+        <button class="ms-2 btn btn-light" (click)="onScore(m.id)">
+          Score
+        </button>
+        <button class="ms-2 btn btn-danger" (click)="onDelete(m.id)">
+          Delete
+        </button>
       </td>
     </tr>
   </tbody>
