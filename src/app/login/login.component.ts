@@ -48,7 +48,7 @@ export class LoginComponent implements OnDestroy {
 
       const loginOb = this.userService.login(data).subscribe((res) => {
         this.userIdService.setUserId(res.id);
-        this.router.navigateByUrl('/dashboard');
+        this.router.navigateByUrl('/allmatches');
       });
 
       this.observableSubs.push(loginOb);
