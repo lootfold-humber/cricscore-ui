@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription, forkJoin, max } from 'rxjs';
+import { Subscription, forkJoin } from 'rxjs';
 import { GetScoreDto } from '../interfaces/get-score-dto';
 import { MatchDto } from '../interfaces/match-dto';
 import { TeamDto } from '../interfaces/team-dto';
@@ -19,6 +19,7 @@ export class ViewScoreComponent implements OnInit, OnDestroy {
   private teams: TeamDto[] = [];
   match: MatchDto | undefined;
   score: GetScoreDto | undefined;
+  interval: any;
 
   constructor(
     private scoreService: ScoreService,
@@ -29,18 +30,26 @@ export class ViewScoreComponent implements OnInit, OnDestroy {
     this.route.paramMap.subscribe((p) => {
       const id = p.get('matchId');
       this.matchId = id == null ? 0 : parseInt(id);
-      console.log(this.matchId);
     });
   }
 
   ngOnInit(): void {
     this.getScore();
+    this.interval = setInterval(() => {
+      this.getScore();
+    }, 10000);
   }
 
   ngOnDestroy(): void {
+    this.unsubscribe();
+  }
+
+  unsubscribe() {
     this.observableSubs.forEach((sub) => {
       sub.unsubscribe();
     });
+
+    clearInterval(this.interval);
   }
 
   private getScore() {
@@ -59,6 +68,10 @@ export class ViewScoreComponent implements OnInit, OnDestroy {
         this.match.awayTeamName = teams.filter(
           (t) => t.id == this.match?.awayTeamId
         )[0].name;
+
+        if (this.match.winningTeamId != 0) {
+          this.unsubscribe();
+        }
       }
     );
 
@@ -68,6 +81,15 @@ export class ViewScoreComponent implements OnInit, OnDestroy {
   public getFormattedDate() {
     if (this.match != undefined) {
       return new Date(this.match.scheduledDateTime).toLocaleString();
+    } else {
+      return '';
+    }
+  }
+
+  public getWinnerTeamName() {
+    if (this.match?.winningTeamId) {
+      return this.teams.filter((t) => t.id == this.match?.winningTeamId)[0]
+        .name;
     } else {
       return '';
     }
