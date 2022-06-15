@@ -37,7 +37,7 @@ import { AllMatchesComponent } from './all-matches/all-matches.component';
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot([
-      { path: '', component: LoginComponent },
+      { path: 'login', component: LoginComponent },
       { path: 'signup', component: SignUpComponent },
       { path: 'teams', component: TeamsComponent },
       { path: 'teams/add', component: AddTeamComponent },

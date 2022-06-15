@@ -51,7 +51,7 @@ export class StopMatchComponent implements OnInit {
   private getUserId() {
     const userOb = this.userIdService.getUserId().subscribe((id) => {
       if (id == 0) {
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/login');
       }
 
       this.userId = id;

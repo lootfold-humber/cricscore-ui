@@ -14,5 +14,11 @@
         </li>
       </ul>
     </div>
+    <button class="btn" *ngIf="!displayLogout" (click)="onLogin()">
+      Log In
+    </button>
+    <button class="btn" *ngIf="displayLogout" (click)="onLogout()">
+      Logout
+    </button>
   </div>
 </nav>
