@@ -23,6 +23,10 @@ export class TeamService {
     });
   }
 
+  getAllTeams() {
+    return this.http.get<TeamDto[]>(`${this.baseUrl}/all`);
+  }
+
   deleteTeam(teamId: number, userId: number) {
     return this.http.delete(`${this.baseUrl}/${teamId}`, {
       headers: { userId: `${userId}` },

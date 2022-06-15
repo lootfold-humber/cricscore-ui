@@ -1,1 +1,22 @@
-<p>all-matches works!</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Home Team</th>
+      <th>Away Team</th>
+      <th>DateTime</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let m of matches">
+      <td>{{ m.homeTeamName }}</td>
+      <td>{{ m.awayTeamName }}</td>
+      <td>
+        {{ getFormattedDate(m.scheduledDateTime) }}
+      </td>
+      <td>
+        <button class="btn btn-light">Score</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
