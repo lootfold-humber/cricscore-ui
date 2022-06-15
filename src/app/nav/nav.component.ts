@@ -40,9 +40,4 @@ export class NavComponent implements OnInit {
     this.userIdService.clearUserId();
     this.router.navigateByUrl('/allmatches');
   }
-
-  onLogin() {
-    this.userIdService.clearUserId();
-    this.router.navigateByUrl('/login');
-  }
 }

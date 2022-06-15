@@ -42,7 +42,10 @@
         </li>
       </ul>
     </div>
-    <button class="btn" *ngIf="!loggedIn" (click)="onLogin()">Log In</button>
+    <button class="btn" *ngIf="!loggedIn" routerLink="/login">Log In</button>
+    <button class="btn ms-2" *ngIf="!loggedIn" routerLink="/signup">
+      Sign Up
+    </button>
     <button class="btn" *ngIf="loggedIn" (click)="onLogout()">Logout</button>
   </div>
 </nav>
