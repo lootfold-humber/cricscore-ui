@@ -1,9 +1,9 @@
-<p>
-  Stop Match | {{ match?.homeTeamName }} vs {{ match?.awayTeamName }} |
+<p class="p-2 text-center">
+  Complete Match | {{ match?.homeTeamName }} vs {{ match?.awayTeamName }} |
   {{ getFormattedDate(match?.scheduledDateTime) }}
 </p>
 
-<form [formGroup]="stopForm" (ngSubmit)="onSubmit()">
+<form class="p-2 w-50 mx-auto" [formGroup]="stopForm" (ngSubmit)="onSubmit()">
   <div class="mt-2">
     <label class="form-label" for="winningTeamId">Match winner</label>
     <select

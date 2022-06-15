@@ -1,6 +1,8 @@
-<p>{{ match?.homeTeamName }} vs {{ match?.awayTeamName }}</p>
+<p class="p-2 text-center">
+  {{ match?.homeTeamName }} vs {{ match?.awayTeamName }}
+</p>
 
-<form [formGroup]="scoreForm" (ngSubmit)="onSubmit()">
+<form class="p-2 w-50 mx-auto" [formGroup]="scoreForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label for="innings" class="control-label">Innings</label>
     <input
@@ -42,7 +44,6 @@
     </div>
   </div>
 
-  <!-- runs -->
   <div class="form-group">
     <label for="runs" class="control-label">Runs</label>
     <input

@@ -1,4 +1,4 @@
-<form class="p-2" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+<form class="p-2 w-50 mx-auto" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
   <div class="mt-2">
     <label class="form-label" for="email">Email</label>
     <input
@@ -28,5 +28,7 @@
     </div>
   </div>
   <button class="mt-2 btn btn-primary" type="submit">Login</button>
-  <button class="mt-2 ms-2 btn" type="menu" routerLink="signup">Sign Up</button>
+  <button class="mt-2 ms-2 btn" type="menu" routerLink="/signup">
+    Sign Up
+  </button>
 </form>

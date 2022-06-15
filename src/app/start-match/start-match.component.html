@@ -1,9 +1,9 @@
-<p>
+<p class="p-2 text-center">
   Start Match | {{ match?.homeTeamName }} vs {{ match?.awayTeamName }} |
   {{ getFormattedDate(match?.scheduledDateTime) }}
 </p>
 
-<form [formGroup]="startForm" (ngSubmit)="onSubmit()">
+<form class="p-2 w-50 mx-auto" [formGroup]="startForm" (ngSubmit)="onSubmit()">
   <div class="mt-2">
     <label class="form-label" for="winningTeamId">Toss winner</label>
     <select
