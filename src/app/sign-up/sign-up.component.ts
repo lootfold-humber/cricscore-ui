@@ -1,6 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { SignUpDto } from '../interfaces/sign-up-dto';
 import { UserService } from '../service/user.service';
@@ -18,7 +19,8 @@ export class SignUpComponent implements OnDestroy {
   constructor(
     private userEmailValidator: UserEmailValidator,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   public signUpForm = new FormGroup(
@@ -73,9 +75,10 @@ export class SignUpComponent implements OnDestroy {
         password: this.password?.value,
       };
 
-      const signUpOb = this.userService
-        .signUp(data)
-        .subscribe(() => this.router.navigateByUrl('/'));
+      const signUpOb = this.userService.signUp(data).subscribe(() => {
+        this.toastr.success('Success!');
+        this.router.navigateByUrl('/login');
+      });
 
       this.observableSubs.push(signUpOb);
     }

@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { CreateTeamDto } from '../interfaces/create-team-dto';
 import { TeamService } from '../service/team.service';
@@ -22,7 +23,8 @@ export class AddTeamComponent implements OnInit, OnDestroy {
   constructor(
     private userIdService: UserIdService,
     private teamsService: TeamService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -59,7 +61,10 @@ export class AddTeamComponent implements OnInit, OnDestroy {
 
       const addTeamOb = this.teamsService
         .addTeam(data, this.userId)
-        .subscribe(() => this.router.navigateByUrl('/teams'));
+        .subscribe(() => {
+          this.toastr.success('Success!');
+          this.router.navigateByUrl('/teams');
+        });
 
       this.observableSubs.push(addTeamOb);
     }

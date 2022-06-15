@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { forkJoin, Subscription } from 'rxjs';
 import { MatchDto } from '../interfaces/match-dto';
 import { ScoreDto } from '../interfaces/score-dto';
@@ -28,7 +29,8 @@ export class UpdateScoreComponent implements OnInit {
     private teamService: TeamService,
     private scoreService: ScoreService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toastr: ToastrService
   ) {
     this.route.paramMap.subscribe((p) => {
       const id = p.get('id');
@@ -127,7 +129,9 @@ export class UpdateScoreComponent implements OnInit {
 
       const scoreOb = this.scoreService
         .updateScore(data, this.userId)
-        .subscribe(() => {});
+        .subscribe(() => {
+          this.toastr.success('Success!');
+        });
 
       this.observableSubs.push(scoreOb);
     }

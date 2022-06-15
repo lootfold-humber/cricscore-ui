@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { TeamDto } from '../interfaces/team-dto';
 import { MatchService } from '../service/match.service';
@@ -31,7 +32,8 @@ export class ScheduleMatchComponent implements OnInit {
     private userIdService: UserIdService,
     private teamsService: TeamService,
     private matchService: MatchService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -107,6 +109,7 @@ export class ScheduleMatchComponent implements OnInit {
       const matchOb = this.matchService
         .shceduleMatch(data, this.userId)
         .subscribe((r) => {
+          this.toastr.success('Success!');
           this.router.navigateByUrl('/matches');
         });
 

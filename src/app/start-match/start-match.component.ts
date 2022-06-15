@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { forkJoin, Subscription } from 'rxjs';
 import { MatchDto } from '../interfaces/match-dto';
 import { TeamDto } from '../interfaces/team-dto';
@@ -37,7 +38,8 @@ export class StartMatchComponent implements OnInit {
     private matchService: MatchService,
     private teamService: TeamService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toastr: ToastrService
   ) {
     this.route.paramMap.subscribe((p) => {
       const id = p.get('id');
@@ -125,6 +127,7 @@ export class StartMatchComponent implements OnInit {
       const startOb = this.matchService
         .startMatch(this.matchId, this.startForm.value, this.userId)
         .subscribe(() => {
+          this.toastr.success('Success!');
           this.router.navigateByUrl('/matches');
         });
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { TeamDto } from '../interfaces/team-dto';
 import { TeamService } from '../service/team.service';
@@ -18,7 +19,8 @@ export class TeamsComponent implements OnInit {
   constructor(
     private userIdService: UserIdService,
     private teamService: TeamService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -53,11 +55,14 @@ export class TeamsComponent implements OnInit {
   }
 
   onDelete(teamId: number) {
-    const deleteOb = this.teamService
-      .deleteTeam(teamId, this.userId)
-      .subscribe(() => {
+    const deleteOb = this.teamService.deleteTeam(teamId, this.userId).subscribe(
+      () => {
         this.getTeams();
-      });
+      },
+      () => {
+        this.toastr.error('Error. Team has a scheduled match.');
+      }
+    );
 
     this.observableSubs.push(deleteOb);
   }

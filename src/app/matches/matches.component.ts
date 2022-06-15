@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Subscription, forkJoin } from 'rxjs';
 import { MatchDto } from '../interfaces/match-dto';
 import { MatchService } from '../service/match.service';
@@ -20,7 +21,8 @@ export class MatchesComponent implements OnInit, OnDestroy {
     private userIdService: UserIdService,
     private matchService: MatchService,
     private teamService: TeamService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -77,9 +79,14 @@ export class MatchesComponent implements OnInit, OnDestroy {
   public onDelete(matchId: number) {
     const deleteOb = this.matchService
       .deleteMatch(matchId, this.userId)
-      .subscribe(() => {
-        this.getMatches();
-      });
+      .subscribe(
+        () => {
+          this.getMatches();
+        },
+        () => {
+          this.toastr.error('Error. Match started it cannot be deleted.');
+        }
+      );
 
     this.observableSubs.push(deleteOb);
   }
