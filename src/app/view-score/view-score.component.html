@@ -5,15 +5,15 @@
         {{ match?.homeTeamName }} vs {{ match?.awayTeamName }}
       </h5>
       <h6 class="card-subtitle mb-2 text-muted">{{ getFormattedDate() }}</h6>
-      <div *ngIf="match?.winningTeamId !== 0">
+      <p *ngIf="match?.winningTeamId !== 0">
         Match won by: {{ getWinnerTeamName() }}
-      </div>
-      <p *ngIf="score?.firstInnings" class="card-text">
+      </p>
+      <div *ngIf="score?.firstInnings" class="card-text">
         {{ getFirstBattingTeamName() }} - {{ getFirstInScore() }}
-      </p>
-      <p *ngIf="score?.secondInnings" class="card-text">
+      </div>
+      <div *ngIf="score?.secondInnings" class="card-text">
         {{ getSecondBattingTeamName() }} - {{ getSecondInScore() }}
-      </p>
+      </div>
     </div>
   </div>
 </div>
