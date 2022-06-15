@@ -1,1 +1,16 @@
-<p>view-score works!</p>
+<div class="mx-auto mt-5 w-50">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">
+        {{ match?.homeTeamName }} vs {{ match?.awayTeamName }}
+      </h5>
+      <h6 class="card-subtitle mb-2 text-muted">{{ getFormattedDate() }}</h6>
+      <p *ngIf="score?.firstInnings" class="card-text">
+        {{ getFirstBattingTeamName() }} - {{ getFirstInScore() }}
+      </p>
+      <p *ngIf="score?.secondInnings" class="card-text">
+        {{ getSecondBattingTeamName() }} - {{ getSecondInScore() }}
+      </p>
+    </div>
+  </div>
+</div>
