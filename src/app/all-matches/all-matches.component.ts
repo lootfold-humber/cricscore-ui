@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription, forkJoin } from 'rxjs';
 import { MatchDto } from '../interfaces/match-dto';
 import { MatchService } from '../service/match.service';
@@ -16,7 +17,8 @@ export class AllMatchesComponent implements OnInit, OnDestroy {
 
   constructor(
     private matchService: MatchService,
-    private teamService: TeamService
+    private teamService: TeamService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -57,5 +59,9 @@ export class AllMatchesComponent implements OnInit, OnDestroy {
     } else {
       return '';
     }
+  }
+
+  onViewScore(matchId: number) {
+    this.router.navigateByUrl(`/score/${matchId}`);
   }
 }

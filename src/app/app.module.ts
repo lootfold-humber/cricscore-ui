@@ -16,6 +16,7 @@ import { StopMatchComponent } from './stop-match/stop-match.component';
 import { UpdateScoreComponent } from './update-score/update-score.component';
 import { NavComponent } from './nav/nav.component';
 import { AllMatchesComponent } from './all-matches/all-matches.component';
+import { ViewScoreComponent } from './view-score/view-score.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { AllMatchesComponent } from './all-matches/all-matches.component';
     UpdateScoreComponent,
     NavComponent,
     AllMatchesComponent,
+    ViewScoreComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +49,7 @@ import { AllMatchesComponent } from './all-matches/all-matches.component';
       { path: 'matches/complete/:id', component: StopMatchComponent },
       { path: 'matches/score/:id', component: UpdateScoreComponent },
       { path: 'allmatches', component: AllMatchesComponent },
+      { path: 'score/:matchId', component: ViewScoreComponent },
     ]),
   ],
   providers: [],

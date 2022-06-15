@@ -15,7 +15,7 @@
         {{ getFormattedDate(m.scheduledDateTime) }}
       </td>
       <td>
-        <button class="btn btn-light">Score</button>
+        <button class="btn btn-light" (click)="onViewScore(m.id)">Score</button>
       </td>
     </tr>
   </tbody>
