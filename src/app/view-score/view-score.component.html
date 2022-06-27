@@ -5,7 +5,7 @@
         {{ match?.homeTeamName }} vs {{ match?.awayTeamName }}
       </h5>
       <h6 class="card-subtitle mb-2 text-muted">{{ getFormattedDate() }}</h6>
-      <p *ngIf="match?.winningTeamId !== 0">
+      <p *ngIf="match?.winningTeamId">
         Match won by: {{ getWinnerTeamName() }}
       </p>
       <div *ngIf="score?.firstInnings" class="card-text">

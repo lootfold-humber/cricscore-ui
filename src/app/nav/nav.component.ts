@@ -38,6 +38,6 @@ export class NavComponent implements OnInit {
 
   onLogout() {
     this.userIdService.clearUserId();
-    this.router.navigateByUrl('/allmatches');
+    this.router.navigateByUrl('/');
   }
 }

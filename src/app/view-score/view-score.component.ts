@@ -37,7 +37,7 @@ export class ViewScoreComponent implements OnInit, OnDestroy {
     this.getScore();
     this.interval = setInterval(() => {
       this.getScore();
-    }, 10000);
+    }, 5000);
   }
 
   ngOnDestroy(): void {
@@ -69,7 +69,7 @@ export class ViewScoreComponent implements OnInit, OnDestroy {
           (t) => t.id == this.match?.awayTeamId
         )[0].name;
 
-        if (this.match.winningTeamId != 0) {
+        if (this.match.winningTeamId) {
           this.unsubscribe();
         }
       }

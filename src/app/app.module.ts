@@ -44,6 +44,7 @@ import { ViewScoreComponent } from './view-score/view-score.component';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     RouterModule.forRoot([
+      { path: '', component: AllMatchesComponent },
       { path: 'login', component: LoginComponent },
       { path: 'signup', component: SignUpComponent },
       { path: 'teams', component: TeamsComponent },
@@ -53,7 +54,6 @@ import { ViewScoreComponent } from './view-score/view-score.component';
       { path: 'matches/start/:id', component: StartMatchComponent },
       { path: 'matches/complete/:id', component: StopMatchComponent },
       { path: 'matches/score/:id', component: UpdateScoreComponent },
-      { path: 'allmatches', component: AllMatchesComponent },
       { path: 'score/:matchId', component: ViewScoreComponent },
     ]),
   ],
